@@ -309,25 +309,20 @@
     list-style-type: none;
 
     .section {
-      margin: 0 (-1 * $baseline);
-      width: calc(100% + (2 * $baseline));
-      padding: 0 ($baseline);
-
-      &:not(:first-child) {
-        .section-name {
-          margin-top: $baseline;
-        }
-      }
+      margin: 0 (-1 * $baseline) 0 ($baseline);
+      width: calc(100% + (2));
+      padding: 0;
+      border-bottom: 1px solid $border-color;
 
       .section-name {
-        @include margin(0, 0, ($baseline / 2), ($baseline / 2));
-
-        padding: 0;
+        padding: ($baseline / 2) 0 ($baseline / 2) 0;
 
         .section-title {
           font-weight: $font-bold;
           font-size: 1.1rem;
           margin: 0;
+          display: inline;
+          padding-left: $baseline;
         }
       }
 
@@ -336,26 +331,45 @@
       }
 
       ol.outline-item {
-        padding-bottom: $baseline;
-        border-bottom: 1px solid $border-color;
-        margin: 0 0 ($baseline / 2) 0;
+        margin: 0;
 
         .subsection {
-          @include margin-left(10px);
-
           list-style-type: none;
-          border: 1px solid transparent;
-          border-radius: 3px;
-          margin-bottom: $baseline/4;
+          border-top: 1px solid $border-color;
+          margin: 0 0 ($baseline / 4) ($baseline * 2);
 
-          a.outline-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: ($baseline / 2);
+          .subsection-title {
+            margin: 0;
+            font-weight: $font-bold;
+            margin-left: $baseline;
+          }
 
-            .subsection-title {
-              margin: 0;
+          .subsection-text {
+            .details {
+              font-size: $body-font-size;
+              color: theme-color("secondary");
+              margin-left: 35px;
+            }
+            .prerequisite {
+              color: theme-color("secondary");
+              font-weight: $font-bold;
+            }
+          }
+
+          .vertical{
+            @include margin-left(10px);
+
+            list-style-type: none;
+            border : 1px solid transparent;
+            border-radius: 2px;
+
+            a.outline-item {
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              padding: ($baseline / 2) 0 ($baseline / 2) 0;
+              margin: 0 0 0 ($baseline);
+              border-top: 1px solid $border-color;
             }
 
             &:hover,
@@ -365,32 +379,26 @@
               text-decoration: none;
             }
 
-            .subsection-text {
-              .details {
-                font-size: $body-font-size;
-                color: theme-color("secondary");
-              }
-            }
-
-            .subsection-actions {
+            .vertical-actions {
               .resume-right {
                 position: relative;
                 top: calc(50% - (#{$baseline} / 2));
               }
             }
-          }
 
-          &.current {
-            border: 1px solid theme-color("primary");
-            border-radius: $btn-border-radius;
+            &.current {
+              border: 1px solid theme-color("primary");
+              border-radius: $btn-border-radius;
 
-            .resume-right {
-              @include float(right);
+              .resume-right {
+                @include float(right);
+              }
             }
-          }
 
-          &:hover {
-            border: 1px solid theme-color("primary");
+            &:hover {
+              border: 1px solid theme-color("primary");
+            }
+
           }
 
           &:last-child {
@@ -404,6 +412,23 @@
       }
     }
   }
+}
+
+// Course outline accordion
+button.accordion-trigger {
+  margin: 2px;
+  padding: 10px 0 10px 0;
+  border: none;
+  width: 100%;
+  text-align: left;
+
+  .fa {
+    color: $blue;
+  }
+}
+
+.accordion-panel.is-hidden {
+  display: none;
 }
 
 // date summary

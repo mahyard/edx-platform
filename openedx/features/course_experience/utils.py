@@ -145,7 +145,6 @@ def get_course_outline_block_tree(request, course_id):
             'discussion'
         ]
     )
-
     course_outline_root_block = all_blocks['blocks'].get(all_blocks['root'], None)
     if course_outline_root_block:
         populate_children(course_outline_root_block, all_blocks['blocks'])

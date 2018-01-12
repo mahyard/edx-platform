@@ -33,5 +33,36 @@ export class CourseOutline {  // eslint-disable-line import/prefer-default-expor
         );
       }),
     );
+
+    [...document.querySelectorAll(('.accordion'))]
+        .forEach(function(accordion) {
+            var sections = Array.prototype.slice.call(accordion.querySelectorAll('.accordion-trigger'));
+
+            sections.forEach(function(section) {
+                section.addEventListener('click', function (event) {
+                    var sectionToggleButton = event.currentTarget;
+                    var toggleButtonChevron = $(sectionToggleButton).children('.fa-chevron-right');
+
+                    if (sectionToggleButton.classList.contains('accordion-trigger')) {
+                        var isExpanded = sectionToggleButton.getAttribute('aria-expanded') == 'true';
+                        var contentPanel = $(document.getElementById(sectionToggleButton.getAttribute('aria-controls')));
+
+                        if (!isExpanded) {
+                            contentPanel.slideDown();
+                            contentPanel.removeClass('is-hidden');
+                            toggleButtonChevron.addClass('fa-rotate-90');
+                            sectionToggleButton.setAttribute('aria-expanded', 'true');
+                        } else if (isExpanded) {
+                            contentPanel.slideUp();
+                            contentPanel.addClass('is-hidden');
+                            toggleButtonChevron.removeClass('fa-rotate-90');
+                            sectionToggleButton.setAttribute('aria-expanded', 'false');
+                        }
+
+                        event.stopImmediatePropagation();
+                    }
+                });
+            });
+        });
   }
 }
