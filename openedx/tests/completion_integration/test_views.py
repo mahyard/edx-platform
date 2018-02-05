@@ -3,11 +3,11 @@
 Test models, managers, and validators.
 """
 
+from completion import waffle
 import ddt
 from django.core.urlresolvers import reverse
 from rest_framework.test import APIClient, force_authenticate
 
-from completion import waffle
 from student.tests.factories import UserFactory, CourseEnrollmentFactory
 from xmodule.modulestore.tests.django_utils import ModuleStoreTestCase
 from xmodule.modulestore.tests.factories import CourseFactory, ItemFactory
