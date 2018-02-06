@@ -1161,7 +1161,9 @@ class ChemicalEquationTest(unittest.TestCase):
         self.assertEqual(context, expected)
 
     def test_chemcalc_ajax_sucess(self):
-        ''' Verify that using the correct dispatch and valid data produces a valid response'''
+        """
+        Verify that using the correct dispatch and valid data produces a valid response
+        """
         data = {'formula': "H"}
         response = self.the_input.handle_ajax("preview_chemcalc", data)
 
